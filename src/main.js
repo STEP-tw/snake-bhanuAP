@@ -17,6 +17,28 @@ const animateSnake=function() {
     createFood(numberOfRows,numberOfCols);
     drawFood(food);
   }
+  if(hasSnakeHitWall(head)) {
+    endGame();
+  }
+}
+
+const endGame = function() {
+  location.reload();
+}
+
+const hasSnakeHitWall = function(head) {
+  let x = head.x;
+  let y = head.y;
+  if(x == 119 && y >=0 && y <=60 && head.direction == 'east') {
+    return true;
+  } else if(x == 0 && y >=0 && y <=60 && head.direction == 'west') {
+    return true;
+  } else if(y == 0 && x >=0 && x <=120 && head.direction == 'north') {
+    return true;
+  } else if(x >= 0 && x <=120 && y==59 && head.direction == 'south') {
+    return true;
+  }
+  return false;
 }
 
 const changeSnakeDirection=function(event) {
